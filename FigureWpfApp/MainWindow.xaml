@@ -43,7 +43,23 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <TextBlock Text="{Binding Name}"></TextBlock>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Name}" />
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="(" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TypeName}" FontStyle="Italic" />
+                            <TextBlock Grid.Row="1" Grid.Column="2" Text=", " FontStyle="Italic" />
+                            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Perimeter}" FontStyle="Italic" />
+                            <TextBlock Grid.Row="1" Grid.Column="4" Text=")" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
