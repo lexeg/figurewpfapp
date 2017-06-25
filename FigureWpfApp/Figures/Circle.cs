@@ -7,7 +7,7 @@ namespace FigureWpfApp.Figures
         private double m_Diameter;
         public Circle(string name, double diameter) : base(name)
         {
-            if (diameter <= 0) throw new ArgumentException("diameter must be positive");
+            if (diameter <= 0) throw new NegativeException("diameter must be positive");
             m_Diameter = diameter;
         }
         public override FigureType Type => FigureType.Circle;

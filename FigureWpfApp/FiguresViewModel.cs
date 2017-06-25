@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System;
+using System.Windows;
 
 namespace FigureWpfApp
 {
@@ -47,19 +48,25 @@ namespace FigureWpfApp
 
             AddFigure = new BaseAutoEventCommand(o =>
             {
-                var figureName = $"{SelectedFigureType.GetDescription()}_{Figures.Count}";
-                switch (SelectedFigureType)
+                try
                 {
-                    case FigureType.Circle:
-                        Figures.Add(new Circle(figureName, ((CircleControl)m_CurrentControlTemplate).Diameter));
-                        break;
-                    case FigureType.Square:
-                        Figures.Add(new Square(figureName, ((SquareControl)m_CurrentControlTemplate).Size));
-                        break;
-                    case FigureType.Triangle:
-                        var control = ((TriangleControl)m_CurrentControlTemplate);
-                        Figures.Add(new Triangle(figureName, control.FirstSide, control.SecondSide, control.ThirdSide));
-                        break;
+                    var figureName = $"{SelectedFigureType.GetDescription()}_{Figures.Count}";
+                    switch (SelectedFigureType)
+                    {
+                        case FigureType.Circle:
+                            Figures.Add(new Circle(figureName, ((CircleControl)m_CurrentControlTemplate).Diameter));
+                            break;
+                        case FigureType.Square:
+                            Figures.Add(new Square(figureName, ((SquareControl)m_CurrentControlTemplate).Size));
+                            break;
+                        case FigureType.Triangle:
+                            var control = ((TriangleControl)m_CurrentControlTemplate);
+                            Figures.Add(new Triangle(figureName, control.FirstSide, control.SecondSide, control.ThirdSide));
+                            break;
+                    }
+                }catch(NegativeException)
+                {
+                    MessageBox.Show("Размер фигуры должен быть положительным числом");
                 }
             }, o => Figures != null);
 

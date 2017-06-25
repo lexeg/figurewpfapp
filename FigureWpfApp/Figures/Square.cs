@@ -7,7 +7,7 @@ namespace FigureWpfApp.Figures
         private double m_Size;
         public Square(string name, double size) : base(name)
         {
-            if (size <= 0) throw new ArgumentException("size must be positive");
+            if (size <= 0) throw new NegativeException("size must be positive");
             m_Size = size;
         }
         public override FigureType Type => FigureType.Square;

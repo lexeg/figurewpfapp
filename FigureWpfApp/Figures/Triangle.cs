@@ -8,7 +8,7 @@ namespace FigureWpfApp.Figures
 
         public Triangle(string name, double a, double b, double c) : base(name)
         {
-            if (a <= 0 || b <= 0 || c <= 0) throw new ArgumentException("edges must be positive");
+            if (a <= 0 || b <= 0 || c <= 0) throw new NegativeException("edges must be positive");
             m_Edges = new double[3];
             m_Edges[0] = a;
             m_Edges[1] = b;
