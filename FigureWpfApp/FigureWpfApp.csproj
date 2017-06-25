@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ContentTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,6 +66,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\BaseAutoEventCommand.cs" />
+    <Compile Include="Controls\CircleControl.cs" />
+    <Compile Include="Controls\SquareControl.cs" />
+    <Compile Include="Controls\TriangleControl.cs" />
+    <Compile Include="FiguresViewModel.cs" />
     <Compile Include="Figures\Circle.cs" />
     <Compile Include="Figures\FigureBase.cs" />
     <Compile Include="Figures\FigureType.cs" />
@@ -98,5 +107,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

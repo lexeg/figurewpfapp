@@ -23,6 +23,9 @@ namespace FigureWpfApp
         public MainWindow()
         {
             InitializeComponent();
+            Action<ControlTemplate> action = new Action<ControlTemplate>(o => FindResource(o));
+            Func<string, ControlTemplate> func = new Func<string, ControlTemplate>(o => FindResource(o) as ControlTemplate);
+            DataContext = new FiguresViewModel(func);
         }
     }
 }
