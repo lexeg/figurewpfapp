@@ -4,12 +4,15 @@
                     xmlns:local="clr-namespace:FigureWpfApp">
     <ControlTemplate x:Key="SquareTemplate" TargetType="controls:SquareControl">
         <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0">Длина стороны:</TextBlock>
-            <TextBox Grid.Column="1" Text="{Binding Size, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Grid.Column="0" Margin="0,5,5,5">Длина стороны:</TextBlock>
+            <TextBox Grid.Column="1" Margin="5,5,0,5" Text="{Binding Size, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </Grid>
     </ControlTemplate>
     <ControlTemplate x:Key="TriangleTemplate" TargetType="controls:TriangleControl">
@@ -20,20 +23,23 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0">Введите длины сторон треугольника:</TextBlock>
-            <TextBox Grid.Row="1" Text="{Binding FirstSide, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBox Grid.Row="2" Text="{Binding SecondSide, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBox Grid.Row="3" Text="{Binding ThirdSide, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Grid.Row="0" Margin="0,5,0,5">Введите длины сторон треугольника:</TextBlock>
+            <TextBox Grid.Row="1" Margin="0,5,0,5" Text="{Binding FirstSide, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Row="2" Margin="0,5,0,5" Text="{Binding SecondSide, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Row="3" Margin="0,5,0,5" Text="{Binding ThirdSide, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </Grid>
     </ControlTemplate>
     <ControlTemplate x:Key="CircleTemplate" TargetType="controls:CircleControl">
         <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0">Диаметр окружности:</TextBlock>
-            <TextBox Grid.Column="1" Text="{Binding Diameter, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Grid.Column="0" Margin="0,5,5,5">Диаметр окружности:</TextBlock>
+            <TextBox Grid.Column="1"  Margin="5,5,0,5" Text="{Binding Diameter, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </Grid>
     </ControlTemplate>
 </ResourceDictionary>

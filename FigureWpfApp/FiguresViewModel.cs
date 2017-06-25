@@ -22,6 +22,13 @@ namespace FigureWpfApp
         {
             m_Func = action;
             Figures = new ObservableCollection<FigureBase>();
+            Figures.CollectionChanged += (s, e) =>
+            {
+                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add || e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove || e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Reset)
+                {
+                    OnPropertyChanged(nameof(HasFigures));
+                }
+            };
             FigureTypes = new List<FigureType>
             {
                 FigureType.Square,
@@ -85,6 +92,14 @@ namespace FigureWpfApp
             {
                 m_SelectedFigure = value;
                 OnPropertyChanged(nameof(SelectedFigure));
+            }
+        }
+
+        public bool HasFigures
+        {
+            get
+            {
+                return Figures != null && Figures.Count > 0;
             }
         }
 
