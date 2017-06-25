@@ -6,7 +6,7 @@ namespace FigureWpfApp.Figures
     {
         private double[] m_Edges;
 
-        public Triangle(double a, double b, double c)
+        public Triangle(string name, double a, double b, double c) : base(name)
         {
             if (a <= 0 || b <= 0 || c <= 0) throw new ArgumentException("edges must be positive");
             m_Edges = new double[3];
@@ -31,5 +31,7 @@ namespace FigureWpfApp.Figures
         }
 
         public double[] Edges => m_Edges;
+
+        public override string Name { get; set; }
     }
 }

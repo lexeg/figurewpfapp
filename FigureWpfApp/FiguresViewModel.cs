@@ -47,17 +47,18 @@ namespace FigureWpfApp
 
             AddFigure = new BaseAutoEventCommand(o =>
             {
+                var figureName = $"{SelectedFigureType.GetDescription()}_{Figures.Count}";
                 switch (SelectedFigureType)
                 {
                     case FigureType.Circle:
-                        Figures.Add(new Circle(((CircleControl)m_CurrentControlTemplate).Diameter));
+                        Figures.Add(new Circle(figureName, ((CircleControl)m_CurrentControlTemplate).Diameter));
                         break;
                     case FigureType.Square:
-                        Figures.Add(new Square(((SquareControl)m_CurrentControlTemplate).Size));
+                        Figures.Add(new Square(figureName, ((SquareControl)m_CurrentControlTemplate).Size));
                         break;
                     case FigureType.Triangle:
                         var control = ((TriangleControl)m_CurrentControlTemplate);
-                        Figures.Add(new Triangle(control.FirstSide, control.SecondSide, control.ThirdSide));
+                        Figures.Add(new Triangle(figureName, control.FirstSide, control.SecondSide, control.ThirdSide));
                         break;
                 }
             }, o => Figures != null);
