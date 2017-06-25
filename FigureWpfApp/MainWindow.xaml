@@ -32,7 +32,7 @@
             </Grid.RowDefinitions>
             <ComboBox Grid.Row="0" Margin="5" ItemsSource="{Binding FigureTypes}" SelectedItem="{Binding SelectedFigureType}"></ComboBox>
             <ContentControl Grid.Row="1" Margin="5" Content="{Binding CurrentControlTemplate}"></ContentControl>
-            <Button Grid.Row="3" Margin="5" Padding="2" Command="{Binding AddFigure}">Добавить фигуру</Button>
+            <Button Grid.Row="3" Margin="5" Padding="2" Command="{Binding AddFigure}" Content="{StaticResource addFigure}"></Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Margin="5" Visibility="{Binding HasFigures, Converter={StaticResource BoolToVisibility}}">
             <Grid.RowDefinitions>
@@ -64,7 +64,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Grid.Row="1" Margin="5" Padding="2" Command="{Binding RemoveFigure}" CommandParameter="{Binding SelectedFigure}">Удалить фигуру</Button>
+            <Button Grid.Row="1" Margin="5" Padding="2" Command="{Binding RemoveFigure}" CommandParameter="{Binding SelectedFigure}" Content="{StaticResource removeFigure}"></Button>
         </Grid>
     </Grid>
 </Window>
