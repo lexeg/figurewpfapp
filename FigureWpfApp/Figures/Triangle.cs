@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace FigureWpfApp.Figures
+﻿namespace FigureWpfApp.Figures
 {
     public sealed class Triangle : FigureBase
     {
-        private double[] m_Edges;
+        private readonly double[] m_Edges;
 
         public Triangle(string name, double a, double b, double c) : base(name)
         {

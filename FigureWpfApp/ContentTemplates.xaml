@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:FigureWpfApp.Controls"
-                    xmlns:local="clr-namespace:FigureWpfApp">
+                    xmlns:controls="clr-namespace:FigureWpfApp.Controls">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="StringDictionary.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>

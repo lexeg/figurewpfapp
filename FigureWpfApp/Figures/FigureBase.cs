@@ -2,7 +2,7 @@
 {
     public abstract class FigureBase
     {
-        public FigureBase(string name)
+        protected FigureBase(string name)
         {
             Name = name;
         }

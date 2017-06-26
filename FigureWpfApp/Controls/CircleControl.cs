@@ -18,7 +18,5 @@ namespace FigureWpfApp.Controls
 
         public static readonly DependencyProperty DiameterProperty =
             DependencyProperty.Register("Diameter", typeof(double), typeof(CircleControl), new PropertyMetadata(default(double)));
-
-
     }
 }

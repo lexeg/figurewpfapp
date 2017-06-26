@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace FigureWpfApp.Figures
+﻿namespace FigureWpfApp.Figures
 {
     public sealed class Square : FigureBase
     {
-        private double m_Size;
+        private readonly double m_Size;
         public Square(string name, double size) : base(name)
         {
             if (size <= 0) throw new NegativeException("size must be positive");

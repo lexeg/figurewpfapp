@@ -1,4 +1,5 @@
-﻿using FigureWpfApp.Commands;
+﻿using System;
+using FigureWpfApp.Commands;
 using FigureWpfApp.Controls;
 using FigureWpfApp.Figures;
 using System.Collections.Generic;
@@ -7,7 +8,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System;
 using System.Windows;
 
 namespace FigureWpfApp
@@ -17,11 +17,9 @@ namespace FigureWpfApp
         private FigureType m_SelectedFigureType;
         private FigureBase m_SelectedFigure;
         private Control m_CurrentControlTemplate;
-        private Func<string, ControlTemplate> m_Func;
 
-        public FiguresViewModel(Func<string, ControlTemplate> action)
+        public FiguresViewModel()
         {
-            m_Func = action;
             Figures = new ObservableCollection<FigureBase>();
             Figures.CollectionChanged += (s, e) =>
             {
@@ -103,21 +101,15 @@ namespace FigureWpfApp
             }
         }
 
-        public bool HasFigures
-        {
-            get
-            {
-                return Figures != null && Figures.Count > 0;
-            }
-        }
+        public bool HasFigures => Figures != null && Figures.Count > 0;
 
-        public Control CurrentControlTemplate { get { return m_CurrentControlTemplate; } }
+        public Control CurrentControlTemplate => m_CurrentControlTemplate;
 
         public List<FigureType> FigureTypes { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        private void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
@@ -135,6 +127,8 @@ namespace FigureWpfApp
                 case FigureType.Triangle:
                     m_CurrentControlTemplate = new TriangleControl();
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(figureType), figureType, null);
             }
         }
     }
