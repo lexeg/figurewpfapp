@@ -5,6 +5,7 @@ using FigureWpfApp.Figures;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,7 +15,7 @@ namespace FigureWpfApp
 {
     public class FiguresViewModel : INotifyPropertyChanged
     {
-        private FigureType m_SelectedFigureType;
+        private FigureTypeModel m_SelectedFigureType;
         private FigureBase m_SelectedFigure;
         private Control m_CurrentControlTemplate;
 
@@ -28,18 +29,19 @@ namespace FigureWpfApp
                     OnPropertyChanged(nameof(HasFigures));
                 }
             };
-            FigureTypes = new List<FigureType>
+            FigureTypes = new List<FigureTypeModel>
             {
-                FigureType.Square,
-                FigureType.Triangle,
-                FigureType.Circle
+                new FigureTypeModel(FigureType.Square),
+                new FigureTypeModel(FigureType.Triangle),
+                new FigureTypeModel(FigureType.Circle)
             };
-            SetControlTemplate(SelectedFigureType);
+            SelectedFigureType = FigureTypes.First();
+            SetControlTemplate(SelectedFigureType.GetFigureType);
             PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName.Equals(nameof(SelectedFigureType)))
                 {
-                    SetControlTemplate(SelectedFigureType);
+                    SetControlTemplate(SelectedFigureType.GetFigureType);
                     OnPropertyChanged(nameof(CurrentControlTemplate));
                 }
             };
@@ -48,8 +50,8 @@ namespace FigureWpfApp
             {
                 try
                 {
-                    var figureName = $"{SelectedFigureType.GetDescription()}_{Figures.Count}";
-                    switch (SelectedFigureType)
+                    var figureName = $"{SelectedFigureType.Name}_{Figures.Count}";
+                    switch (SelectedFigureType.GetFigureType)
                     {
                         case FigureType.Circle:
                             Figures.Add(new Circle(figureName, ((CircleControl)m_CurrentControlTemplate).Diameter));
@@ -81,7 +83,7 @@ namespace FigureWpfApp
         public ICommand AddFigure { get; private set; }
         public ICommand RemoveFigure { get; private set; }
 
-        public FigureType SelectedFigureType
+        public FigureTypeModel SelectedFigureType
         {
             get { return m_SelectedFigureType; }
             set
@@ -105,7 +107,7 @@ namespace FigureWpfApp
 
         public Control CurrentControlTemplate => m_CurrentControlTemplate;
 
-        public List<FigureType> FigureTypes { get; }
+        public List<FigureTypeModel> FigureTypes { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
