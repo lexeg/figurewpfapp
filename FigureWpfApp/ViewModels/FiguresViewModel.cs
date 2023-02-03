@@ -125,7 +125,7 @@ namespace FigureWpfApp.ViewModels
                             Figures.Add(new Square(figureName, ((SquareControl)_currentControlTemplate).Size));
                             break;
                         case Enums.FigureTypes.Triangle:
-                            var control = ((TriangleControl)_currentControlTemplate);
+                            var control = (TriangleControl)_currentControlTemplate;
                             Figures.Add(new Triangle(figureName, control.FirstSide, control.SecondSide,
                                 control.ThirdSide));
                             break;
