@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace FigureWpfApp
+namespace FigureWpfApp.Views
 {
     /// <summary>
     /// Interaction logic for App.xaml

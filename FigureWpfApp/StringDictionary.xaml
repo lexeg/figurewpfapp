@@ -1,9 +1,0 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
-    <system:String x:Key="addFigure">Добавить фигуру</system:String>
-    <system:String x:Key="removeFigure">Удалить фигуру</system:String>
-    <system:String x:Key="sideLength">Длина стороны:</system:String>
-    <system:String x:Key="insertTriangleSides">Введите длины сторон треугольника:</system:String>
-    <system:String x:Key="circleDiameter">Диаметр окружности:</system:String>
-</ResourceDictionary>

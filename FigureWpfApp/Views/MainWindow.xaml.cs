@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using FigureWpfApp.ViewModels;
 
-namespace FigureWpfApp
+namespace FigureWpfApp.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

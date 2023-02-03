@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:FigureWpfApp.Controls">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="StringDictionary.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Resources/StringDictionary.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
     <ControlTemplate x:Key="SquareTemplate" TargetType="controls:SquareControl">
         <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
@@ -13,7 +13,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Margin="0,5,5,5" Text="{StaticResource sideLength}"></TextBlock>
+            <TextBlock Grid.Column="0" Margin="0,5,5,5" Text="{StaticResource SideLength}"></TextBlock>
             <TextBox Grid.Column="1" Margin="5,5,0,5" Text="{Binding Size, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </Grid>
     </ControlTemplate>
@@ -25,7 +25,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Margin="0,5,0,5" Text="{StaticResource insertTriangleSides}"></TextBlock>
+            <TextBlock Grid.Row="0" Margin="0,5,0,5" Text="{StaticResource InsertTriangleSides}"></TextBlock>
             <TextBox Grid.Row="1" Margin="0,5,0,5" Text="{Binding FirstSide, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBox Grid.Row="2" Margin="0,5,0,5" Text="{Binding SecondSide, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBox Grid.Row="3" Margin="0,5,0,5" Text="{Binding ThirdSide, UpdateSourceTrigger=PropertyChanged}"></TextBox>
@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Margin="0,5,5,5" Text="{StaticResource circleDiameter}"></TextBlock>
+            <TextBlock Grid.Column="0" Margin="0,5,5,5" Text="{StaticResource CircleDiameter}"></TextBlock>
             <TextBox Grid.Column="1"  Margin="5,5,0,5" Text="{Binding Diameter, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </Grid>
     </ControlTemplate>

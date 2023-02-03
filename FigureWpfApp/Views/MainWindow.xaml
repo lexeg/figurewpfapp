@@ -1,18 +1,15 @@
-﻿<Window x:Class="FigureWpfApp.MainWindow"
+﻿<Window x:Class="FigureWpfApp.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:FigureWpfApp.ViewModels"
         mc:Ignorable="d"
-        Title="Фигуры" Height="350" Width="525">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ContentTemplates.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-    <Grid Margin="5">
+        Height="350" Width="525">
+    <Window.Title>
+        <StaticResource ResourceKey="MainWindowTitle" />
+    </Window.Title>
+    <Grid Margin="5" d:DataContext="{d:DesignInstance viewModels:FiguresViewModel}">
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
         </Grid.Resources>
@@ -38,7 +35,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
             <ContentControl Grid.Row="1" Margin="5" Content="{Binding CurrentControlTemplate}"></ContentControl>
-            <Button Grid.Row="3" Margin="5" Padding="2" Command="{Binding AddFigure}" Content="{StaticResource addFigure}"></Button>
+            <Button Grid.Row="3" Margin="5" Padding="2" Command="{Binding AddFigure}" Content="{StaticResource AddFigure}"></Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Margin="5" Visibility="{Binding HasFigures, Converter={StaticResource BoolToVisibility}}">
             <Grid.RowDefinitions>
@@ -70,7 +67,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Grid.Row="1" Margin="5" Padding="2" Command="{Binding RemoveFigure}" CommandParameter="{Binding SelectedFigure}" Content="{StaticResource removeFigure}"></Button>
+            <Button Grid.Row="1" Margin="5" Padding="2" Command="{Binding RemoveFigure}" CommandParameter="{Binding SelectedFigure}" Content="{StaticResource RemoveFigure}"></Button>
         </Grid>
     </Grid>
 </Window>
