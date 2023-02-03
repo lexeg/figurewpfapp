@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -26,7 +27,9 @@ namespace FigureWpfApp.ViewModels
             Figures = new ObservableCollection<FigureBase>();
             Figures.CollectionChanged += (s, e) =>
             {
-                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add || e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove || e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Reset)
+                if (e.Action == NotifyCollectionChangedAction.Add ||
+                    e.Action == NotifyCollectionChangedAction.Remove ||
+                    e.Action == NotifyCollectionChangedAction.Reset)
                 {
                     OnPropertyChanged(nameof(HasFigures));
                 }
@@ -47,37 +50,7 @@ namespace FigureWpfApp.ViewModels
                     OnPropertyChanged(nameof(CurrentControlTemplate));
                 }
             };
-
-            AddFigure = new BaseAutoEventCommand(o =>
-            {
-                try
-                {
-                    var figureName = $"{SelectedFigureType.Name}_{Figures.Count}";
-                    switch (SelectedFigureType.GetFigureType)
-                    {
-                        case Enums.FigureTypes.Circle:
-                            Figures.Add(new Circle(figureName, ((CircleControl)_currentControlTemplate).Diameter));
-                            break;
-                        case Enums.FigureTypes.Square:
-                            Figures.Add(new Square(figureName, ((SquareControl)_currentControlTemplate).Size));
-                            break;
-                        case Enums.FigureTypes.Triangle:
-                            var control = ((TriangleControl)_currentControlTemplate);
-                            Figures.Add(new Triangle(figureName, control.FirstSide, control.SecondSide, control.ThirdSide));
-                            break;
-                    }
-                }catch(NegativeException)
-                {
-                    MessageBox.Show("Размер фигуры должен быть положительным числом");
-                }
-            }, o => Figures != null);
-
-            RemoveFigure = new BaseAutoEventCommand(o =>
-            {
-                var f = o as FigureBase;
-                if (f == null) return;
-                Figures.Remove(f);
-            }, o => Figures != null && Figures.Count > 0);
+            InitializeCommands();
         }
 
         public ObservableCollection<FigureBase> Figures { get; private set; }
@@ -91,7 +64,7 @@ namespace FigureWpfApp.ViewModels
             set
             {
                 _selectedFigureType = value;
-                OnPropertyChanged(nameof(SelectedFigureType));
+                OnPropertyChanged();
             }
         }
 
@@ -101,7 +74,7 @@ namespace FigureWpfApp.ViewModels
             set
             {
                 _selectedFigure = value;
-                OnPropertyChanged(nameof(SelectedFigure));
+                OnPropertyChanged();
             }
         }
 
@@ -134,6 +107,41 @@ namespace FigureWpfApp.ViewModels
                 default:
                     throw new ArgumentOutOfRangeException(nameof(figureType), figureType, null);
             }
+        }
+
+        private void InitializeCommands()
+        {
+            AddFigure = new BaseAutoEventCommand(o =>
+            {
+                try
+                {
+                    var figureName = $"{SelectedFigureType.Name}_{Figures.Count}";
+                    switch (SelectedFigureType.GetFigureType)
+                    {
+                        case Enums.FigureTypes.Circle:
+                            Figures.Add(new Circle(figureName, ((CircleControl)_currentControlTemplate).Diameter));
+                            break;
+                        case Enums.FigureTypes.Square:
+                            Figures.Add(new Square(figureName, ((SquareControl)_currentControlTemplate).Size));
+                            break;
+                        case Enums.FigureTypes.Triangle:
+                            var control = ((TriangleControl)_currentControlTemplate);
+                            Figures.Add(new Triangle(figureName, control.FirstSide, control.SecondSide,
+                                control.ThirdSide));
+                            break;
+                    }
+                }
+                catch (NegativeException)
+                {
+                    MessageBox.Show("Размер фигуры должен быть положительным числом");
+                }
+            }, o => Figures != null);
+
+            RemoveFigure = new BaseAutoEventCommand(o =>
+            {
+                if (!(o is FigureBase f)) return;
+                Figures.Remove(f);
+            }, o => Figures != null && Figures.Count > 0);
         }
     }
 }
