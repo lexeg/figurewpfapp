@@ -1,7 +1,6 @@
 ﻿using System;
 using FigureWpfApp.Commands;
 using FigureWpfApp.Controls;
-using FigureWpfApp.Figures;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,14 +9,17 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
+using FigureWpfApp.Enums;
+using FigureWpfApp.Exceptions;
+using FigureWpfApp.Models;
 
 namespace FigureWpfApp
 {
     public class FiguresViewModel : INotifyPropertyChanged
     {
-        private FigureTypeModel m_SelectedFigureType;
-        private FigureBase m_SelectedFigure;
-        private Control m_CurrentControlTemplate;
+        private FigureTypeModel _selectedFigureType;
+        private FigureBase _selectedFigure;
+        private Control _currentControlTemplate;
 
         public FiguresViewModel()
         {
@@ -31,9 +33,9 @@ namespace FigureWpfApp
             };
             FigureTypes = new List<FigureTypeModel>
             {
-                new FigureTypeModel(FigureType.Square),
-                new FigureTypeModel(FigureType.Triangle),
-                new FigureTypeModel(FigureType.Circle)
+                new FigureTypeModel(Enums.FigureTypes.Square),
+                new FigureTypeModel(Enums.FigureTypes.Triangle),
+                new FigureTypeModel(Enums.FigureTypes.Circle)
             };
             SelectedFigureType = FigureTypes.First();
             SetControlTemplate(SelectedFigureType.GetFigureType);
@@ -53,14 +55,14 @@ namespace FigureWpfApp
                     var figureName = $"{SelectedFigureType.Name}_{Figures.Count}";
                     switch (SelectedFigureType.GetFigureType)
                     {
-                        case FigureType.Circle:
-                            Figures.Add(new Circle(figureName, ((CircleControl)m_CurrentControlTemplate).Diameter));
+                        case Enums.FigureTypes.Circle:
+                            Figures.Add(new Circle(figureName, ((CircleControl)_currentControlTemplate).Diameter));
                             break;
-                        case FigureType.Square:
-                            Figures.Add(new Square(figureName, ((SquareControl)m_CurrentControlTemplate).Size));
+                        case Enums.FigureTypes.Square:
+                            Figures.Add(new Square(figureName, ((SquareControl)_currentControlTemplate).Size));
                             break;
-                        case FigureType.Triangle:
-                            var control = ((TriangleControl)m_CurrentControlTemplate);
+                        case Enums.FigureTypes.Triangle:
+                            var control = ((TriangleControl)_currentControlTemplate);
                             Figures.Add(new Triangle(figureName, control.FirstSide, control.SecondSide, control.ThirdSide));
                             break;
                     }
@@ -85,27 +87,27 @@ namespace FigureWpfApp
 
         public FigureTypeModel SelectedFigureType
         {
-            get { return m_SelectedFigureType; }
+            get => _selectedFigureType;
             set
             {
-                m_SelectedFigureType = value;
+                _selectedFigureType = value;
                 OnPropertyChanged(nameof(SelectedFigureType));
             }
         }
 
         public FigureBase SelectedFigure
         {
-            get { return m_SelectedFigure; }
+            get => _selectedFigure;
             set
             {
-                m_SelectedFigure = value;
+                _selectedFigure = value;
                 OnPropertyChanged(nameof(SelectedFigure));
             }
         }
 
         public bool HasFigures => Figures != null && Figures.Count > 0;
 
-        public Control CurrentControlTemplate => m_CurrentControlTemplate;
+        public Control CurrentControlTemplate => _currentControlTemplate;
 
         public List<FigureTypeModel> FigureTypes { get; }
 
@@ -116,18 +118,18 @@ namespace FigureWpfApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-        private void SetControlTemplate(FigureType figureType)
+        private void SetControlTemplate(FigureTypes figureType)
         {
             switch (figureType)
             {
-                case FigureType.Circle:
-                    m_CurrentControlTemplate = new CircleControl();
+                case Enums.FigureTypes.Circle:
+                    _currentControlTemplate = new CircleControl();
                     break;
-                case FigureType.Square:
-                    m_CurrentControlTemplate = new SquareControl();
+                case Enums.FigureTypes.Square:
+                    _currentControlTemplate = new SquareControl();
                     break;
-                case FigureType.Triangle:
-                    m_CurrentControlTemplate = new TriangleControl();
+                case Enums.FigureTypes.Triangle:
+                    _currentControlTemplate = new TriangleControl();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(figureType), figureType, null);

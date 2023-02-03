@@ -70,14 +70,15 @@
     <Compile Include="Controls\CircleControl.cs" />
     <Compile Include="Controls\SquareControl.cs" />
     <Compile Include="Controls\TriangleControl.cs" />
+    <Compile Include="Enums\FigureTypes.cs" />
+    <Compile Include="Exceptions\NegativeException.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="FiguresViewModel.cs" />
-    <Compile Include="Figures\Circle.cs" />
-    <Compile Include="Figures\FigureBase.cs" />
-    <Compile Include="Figures\FigureType.cs" />
-    <Compile Include="Figures\FigureTypeModel.cs" />
-    <Compile Include="Figures\NegativeException.cs" />
-    <Compile Include="Figures\Square.cs" />
-    <Compile Include="Figures\Triangle.cs" />
+    <Compile Include="Models\Circle.cs" />
+    <Compile Include="Models\FigureBase.cs" />
+    <Compile Include="Models\FigureTypeModel.cs" />
+    <Compile Include="Models\Square.cs" />
+    <Compile Include="Models\Triangle.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -113,6 +114,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

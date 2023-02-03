@@ -12,11 +12,13 @@ namespace FigureWpfApp.Controls
 
         public double Diameter
         {
-            get { return (double)GetValue(DiameterProperty); }
-            set { SetValue(DiameterProperty, value); }
+            get => (double)GetValue(DiameterProperty);
+            set => SetValue(DiameterProperty, value);
         }
 
-        public static readonly DependencyProperty DiameterProperty =
-            DependencyProperty.Register("Diameter", typeof(double), typeof(CircleControl), new PropertyMetadata(default(double)));
+        public static readonly DependencyProperty DiameterProperty = DependencyProperty.Register(nameof(Diameter),
+            typeof(double),
+            typeof(CircleControl),
+            new PropertyMetadata(default(double)));
     }
 }

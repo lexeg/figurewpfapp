@@ -12,29 +12,35 @@ namespace FigureWpfApp.Controls
 
         public double FirstSide
         {
-            get { return (double)GetValue(FirstSideProperty); }
-            set { SetValue(FirstSideProperty, value); }
+            get => (double)GetValue(FirstSideProperty);
+            set => SetValue(FirstSideProperty, value);
         }
 
-        public static readonly DependencyProperty FirstSideProperty =
-            DependencyProperty.Register("FirstSide", typeof(double), typeof(TriangleControl), new PropertyMetadata(default(double)));
+        public static readonly DependencyProperty FirstSideProperty = DependencyProperty.Register(nameof(FirstSide),
+            typeof(double),
+            typeof(TriangleControl),
+            new PropertyMetadata(default(double)));
 
         public double SecondSide
         {
-            get { return (double)GetValue(SecondSideProperty); }
-            set { SetValue(SecondSideProperty, value); }
+            get => (double)GetValue(SecondSideProperty);
+            set => SetValue(SecondSideProperty, value);
         }
 
-        public static readonly DependencyProperty SecondSideProperty =
-            DependencyProperty.Register("SecondSide", typeof(double), typeof(TriangleControl), new PropertyMetadata(default(double)));
+        public static readonly DependencyProperty SecondSideProperty = DependencyProperty.Register(nameof(SecondSide),
+            typeof(double),
+            typeof(TriangleControl),
+            new PropertyMetadata(default(double)));
 
         public double ThirdSide
         {
-            get { return (double)GetValue(ThirdSideProperty); }
-            set { SetValue(ThirdSideProperty, value); }
+            get => (double)GetValue(ThirdSideProperty);
+            set => SetValue(ThirdSideProperty, value);
         }
 
-        public static readonly DependencyProperty ThirdSideProperty =
-            DependencyProperty.Register("ThirdSide", typeof(double), typeof(TriangleControl), new PropertyMetadata(default(double)));
+        public static readonly DependencyProperty ThirdSideProperty = DependencyProperty.Register(nameof(ThirdSide),
+            typeof(double),
+            typeof(TriangleControl),
+            new PropertyMetadata(default(double)));
     }
 }

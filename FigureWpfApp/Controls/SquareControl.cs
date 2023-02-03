@@ -12,11 +12,13 @@ namespace FigureWpfApp.Controls
 
         public double Size
         {
-            get { return (double)GetValue(SizeProperty); }
-            set { SetValue(SizeProperty, value); }
+            get => (double)GetValue(SizeProperty);
+            set => SetValue(SizeProperty, value);
         }
-        
-        public static readonly DependencyProperty SizeProperty =
-            DependencyProperty.Register("Size", typeof(double), typeof(SquareControl), new PropertyMetadata(default(double)));
+
+        public static readonly DependencyProperty SizeProperty = DependencyProperty.Register(nameof(Size),
+            typeof(double),
+            typeof(SquareControl),
+            new PropertyMetadata(default(double)));
     }
 }

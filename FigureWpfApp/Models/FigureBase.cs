@@ -1,4 +1,7 @@
-﻿namespace FigureWpfApp.Figures
+﻿using FigureWpfApp.Enums;
+using FigureWpfApp.Extensions;
+
+namespace FigureWpfApp.Models
 {
     public abstract class FigureBase
     {
@@ -7,9 +10,9 @@
             Name = name;
         }
 
-        public abstract FigureType Type { get; }
+        public abstract FigureTypes Type { get; }
         public abstract double Perimeter { get; }
         public abstract string Name { get; set; }
-        public string TypeName { get { return Type.GetDescription(); } }
+        public string TypeName => Type.GetDescriptionOrValue();
     }
 }
